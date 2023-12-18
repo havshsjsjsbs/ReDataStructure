@@ -9,7 +9,7 @@ enum STATUS_CODE
     NULL_PTR,
     MALLOC_ERROR,
     INVALID_ACCESS,
-}
+};
 
 #define DEFAULT_SIZE 10
 
@@ -86,9 +86,9 @@ int dynamicArrayInit(dynamicArray *pArray, int capacity)
 
 
 /* 动态数组插入数据(默认插到数组的末尾) */
-int dynamicArrayInsertData(dynamicArray *pArray)
+int dynamicArrayInsertData(dynamicArray *pArray, ELEMENTTYPE val)
 {
-   return dynamicArrayAppointPosInsertData(pArray, pArray->len, ELEMENTTYPE val);
+   return dynamicArrayAppointPosInsertData(pArray, pArray->len, val);
 }
 
 /* 动态数组插入数据，在指定位置插入 */
@@ -141,7 +141,7 @@ int dynamicArrayModifyAppointPosData(dynamicArray *pArray, int pos, ELEMENTTYPE 
     /* 更新位置的数据 */
     pArray->data[pos] = val;
 
-    return ON_SUCCESS,
+    return ON_SUCCESS;
 
 }
 
@@ -214,15 +214,47 @@ int dynamicArrayDeleteAppointPosData(dynamicArray *pArray, int pos)
 }
 
 /* 动态数组删除指定元素 */
-int dynamicArrayDeleteAppointData(dynamicArray *pArray, ELEMENTTYPE val);
+int dynamicArrayDeleteAppointData(dynamicArray *pArray, ELEMENTTYPE val)
+{
+    for(int idx = pArray->len; idx >= 0; idx--)
+    {
+        dynamicArrayDeleteAppointPosData(pArray, idx);
+    }
+}
 
 
 
 /* 动态数组销毁 */
-int dynamicArrayDestroy(dynamicArray *pArray);
+int dynamicArrayDestroy(dynamicArray *pArray)
+{
+    if(pArray == NULL)
+    {
+        return NULL_PTR;
+    }
+
+    if(pArray->data != NULL)
+    {
+        free(pArray->data);
+        pArray->data = NULL;
+    }
+}
 
 /* 获取动态数组的大小 */
-int dynamicArrayGetCapacity(dynamicArray *pArray, int *pSize);
+int dynamicArrayGetCapacity(dynamicArray *pArray, int *pSize)
+{
+    if(pArray = NULL)
+    {
+        return NULL_PTR;
+    }
+
+    /* 解引用 */
+    if(pSize != NULL)
+    {
+        *pSize = pArray->len;
+    }
+    
+    return ON_SUCCESS;
+}
 
 /* 获取动态数组的容量 */
 int dynamicArrayGetSize(dynamicArray *pArray, int *pCapacity);
