@@ -18,7 +18,7 @@ typedef struct LINKLIST
 {
     /* 链表的虚拟头结点 */
     LinkNode * head;
-
+    LinkNode * tail;//不需要分配空间，只有需要取里面数据的时候才需要分配空间
     /* 链表的长度 */
     int len;
 }LinkList;
