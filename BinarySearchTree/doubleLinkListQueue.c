@@ -1,8 +1,5 @@
-#include "DoubleLinkListQueue.h"
+#include "doubleLinkListQueue.h"
 #include "doubleLinkList.h"
-
-
-
 
 /* 队列初始化 */
 int doubleLinkListQueueInit(DoubleLinkListQueue **pQueue)
@@ -10,7 +7,7 @@ int doubleLinkListQueueInit(DoubleLinkListQueue **pQueue)
     return DoubleLinkListInit(pQueue);
 }
 
-/* 入队列 */
+/* 队列入队 */
 int doubleLinkListQueuePush(DoubleLinkListQueue *pQueue, ELEMENTTYPE val)
 {
     return DoubleLinkListTailInsert(pQueue, val);
@@ -28,7 +25,7 @@ int doubleLinkListQueueRear(DoubleLinkListQueue *pQueue, ELEMENTTYPE *pVal)
     return DoubleLinkListGetTailVal(pQueue, pVal);
 }
 
-/* 出队列 */
+/* 队列出队 */
 int doubleLinkListQueuePop(DoubleLinkListQueue *pQueue)
 {
     return DoubleLinkListHeadDel(pQueue);
@@ -48,8 +45,8 @@ int doubleLinkListQueueIsEmpty(DoubleLinkListQueue *pQueue)
     return size == 0 ? 1 : 0;
 }
 
-/* 队列的销毁 */
-int doubleLinkListQueueDestory(DoubleLinkListQueue *pQueue)
+/* 队列销毁*/
+int doubleLinkListQueueDestroy(DoubleLinkListQueue *pQueue)
 {
-    return DoubleLinkListDestory(pQueue);
+    return DoubleLinkListDestroy(pQueue);
 }
